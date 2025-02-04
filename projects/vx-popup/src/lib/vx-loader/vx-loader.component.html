@@ -1,0 +1,33 @@
+<div *ngIf="visible" class="loader-container">
+  <ng-container [ngSwitch]="mode">
+    <!-- Spinner Mode -->
+    <div
+      *ngSwitchCase="'spinner'"
+      class="spinner"
+      [ngClass]="size"
+      [ngStyle]="{ 'border-top-color': color }"
+    ></div>
+
+    <!-- Ajax Inner Mode -->
+    <div
+      *ngSwitchCase="'ajaxInner'"
+      id="ajaxLoaderHorizontal"
+      [ngStyle]="{ 'border-color': color }"
+    >
+      <div
+        class="ajaxInner"
+        *ngFor="let _ of [1, 2, 3]"
+        [ngStyle]="{ 'background-color': color }"
+      ></div>
+    </div>
+
+    <!-- Ajax Circle Mode -->
+    <ul *ngSwitchCase="'ajaxCircule'" class="loading">
+      <li
+        *ngFor="let _ of [1, 2, 3]"
+        [ngClass]="size"
+        [ngStyle]="{ 'border-color': color }"
+      ></li>
+    </ul>
+  </ng-container>
+</div>

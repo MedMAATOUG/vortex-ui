@@ -1,0 +1,157 @@
+:host {
+  display: inline-block;
+}
+
+.vx-button {
+  /* Base variables */
+  box-sizing: border-box;
+  --button-bg: #f0f0f0;
+  --button-text: #333;
+  --button-border: transparent;
+  --button-hover-bg: #e6e6e6; /* Darkened version of #f0f0f0 */
+  --button-hover-text: #333;
+  --button-active-bg: #d9d9d9; /* Further darkened version */
+  --button-active-scale: 0.99;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 0px;
+  border-radius: 4px;
+  border: 1px solid var(--button-border);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  position: relative;
+  overflow: hidden;
+
+  &:focus-visible {
+    outline: 2px solid var(--button-text);
+    outline-offset: 2px;
+  }
+
+  &:active:not(.vx-button-disabled) {
+    background-color: var(--button-active-bg);
+    transform: scale(var(--button-active-scale));
+  }
+
+  &:hover:not(.vx-button-disabled) {
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
+  }
+
+  /* Contained variants */
+  &-contained {
+    &.vx-button-danger {
+      --button-bg: #dc3545;
+      --button-text: #fff;
+      --button-hover-bg: #b32a37;
+      --button-active-bg: #991f2b;
+    }
+    &.vx-button-info {
+      --button-bg: #17a2b8;
+      --button-text: #fff;
+      --button-hover-bg: #138496;
+      --button-active-bg: #0f6d79;
+    }
+    &.vx-button-warning {
+      --button-bg: #ffc107;
+      --button-text: #333;
+      --button-hover-bg: #e0a800;
+      --button-active-bg: #c69500;
+    }
+    &.vx-button-success {
+      --button-bg: #28a745;
+      --button-text: #fff;
+      --button-hover-bg: #218838;
+      --button-active-bg: #1e7e34;
+    }
+  }
+
+  /* Outlined variants */
+  &-outlined {
+    background-color: transparent;
+
+    &.vx-button-default {
+      --button-border: #c4c4c4;
+      --button-text: #333;
+      --button-hover-bg: rgba(196, 196, 196, 0.1);
+      --button-active-bg: rgba(196, 196, 196, 0.2);
+    }
+    &.vx-button-danger {
+      --button-border: #dc3545;
+      --button-text: #dc3545;
+      --button-hover-bg: rgba(220, 53, 69, 0.1);
+      --button-active-bg: rgba(220, 53, 69, 0.2);
+    }
+    &.vx-button-info {
+      --button-border: #17a2b8;
+      --button-text: #17a2b8;
+      --button-hover-bg: rgba(23, 162, 184, 0.1);
+      --button-active-bg: rgba(23, 162, 184, 0.2);
+    }
+    &.vx-button-warning {
+      --button-border: #ffc107;
+      --button-text: #ffc107;
+      --button-hover-bg: rgba(255, 193, 7, 0.1);
+      --button-active-bg: rgba(255, 193, 7, 0.2);
+    }
+    &.vx-button-success {
+      --button-border: #28a745;
+      --button-text: #28a745;
+      --button-hover-bg: rgba(40, 167, 69, 0.1);
+      --button-active-bg: rgba(40, 167, 69, 0.2);
+    }
+  }
+
+  &-disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  &-loading {
+    cursor: wait;
+  }
+
+  &-full {
+    width: 100%;
+    display: flex;
+  }
+
+  &-rtl {
+    direction: rtl;
+  }
+
+  /* Size variants */
+  &[size="small"] {
+    padding: 4px 12px;
+    font-size: 12px;
+  }
+  &[size="large"] {
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+
+  /* Text styling with ellipsis */
+  .vx-button-text {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+}
+
+/* Spinner animation for loader */
+@keyframes button-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

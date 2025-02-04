@@ -1,0 +1,180 @@
+<div
+  *ngIf="visible && shading"
+  class="vx-popup-overlay"
+  [ngStyle]="{
+    'background-color': shadingColor,
+    'z-index': state.zIndex
+  }"
+></div>
+
+<div
+  #popup
+  *ngIf="visible"
+  class="vx-popup"
+  [ngClass]="animation"
+  [ngStyle]="{
+    'left.px': positionXY.x,
+    'top.px': positionXY.y,
+    'width.px': state.size.width,
+    'height.px': state.size.height,
+    'max-height': maxHeight ? maxHeight : 'none',
+    'min-height': minHeight ? minHeight : 'none',
+    'max-width': maxWidth ? maxWidth : 'none',
+    'min-width': minWidth ? minWidth : 'none',
+    'z-index': state.zIndex + 1
+  }"
+>
+  <!-- Use the templates in your buttons -->
+  <div
+    *ngIf="showHeader"
+    class="vx-popup-header"
+    (mousedown)="onMouseDown($event)"
+  >
+    <div class="vx-dynamic-header">
+      <span class="vx-popup-title">{{ title || " " }}</span>
+
+      <div *ngIf="showCloseButton" class="vx-toolbar-items">
+        <vx-button
+          [stylingMode]="'outlined'"
+          [height]="30"
+          [width]="40"
+          [type]="'default'"
+          [customTemplate]="closeIcon"
+          (onClick)="close()"
+        >
+        </vx-button>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="vx-popup-content vx-scrollbar"
+    [ngClass]="{
+  'header-content-footer':  showHeader && showFooter,
+  'header-content':   showHeader && !showFooter,
+  'content-footer':   !showHeader && showFooter,
+  'content':  !showHeader && !showFooter,
+  }"
+  >
+    <ng-container *ngIf="component; else projected">
+      <ng-container
+        [ngComponentOutlet]="component"
+        [ngComponentOutletInputs]="componentInputs"
+      ></ng-container>
+    </ng-container>
+
+    <ng-template #projected>
+      <ng-container *ngIf="customTemplate; else projectedComponent">
+        <ng-container [ngTemplateOutlet]="customTemplate"></ng-container>
+      </ng-container>
+
+      <ng-template #projectedComponent>
+        <ng-content></ng-content>
+      </ng-template>
+    </ng-template>
+    <div *ngIf="loading" class="vx-popup-loader-overlay">
+      <vx-loader [visible]="loading"></vx-loader>
+    </div>
+  </div>
+
+  <div
+    *ngIf="showFooter"
+    class="vx-popup-footer"
+    (mousedown)="onMouseDown($event)"
+  >
+    <!-- buttons -->
+    <div class="left">
+      <ng-container *ngFor="let btn of buttons">
+        <ng-container *ngIf="btn.position && btn.position == 'left'">
+          <vx-button
+            [id]="btn.id"
+            [stylingMode]="btn.stylingMode || 'outlined'"
+            [type]="btn?.type || 'default'"
+            [text]="btn?.text || ''"
+            [height]="btn?.height || 35"
+            [width]="btn?.width ?? 'auto'"
+            [disabled]="btn?.disabled || false"
+            [visible]="btn?.visible || true"
+            [loading]="btn?.loading || false"
+            (onClick)="
+              onButtonClick.emit({ button: $event.component, component: this })
+            "
+          >
+          </vx-button>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="center">
+      <ng-container *ngFor="let btn of buttons">
+        <ng-container *ngIf="btn.position && btn.position == 'center'">
+          <vx-button
+            [id]="btn.id"
+            [stylingMode]="btn.stylingMode || 'outlined'"
+            [type]="btn.type || 'default'"
+            [text]="btn?.text || ''"
+            [height]="btn?.height || 35"
+            [width]="btn?.width || 'auto'"
+            [disabled]="btn?.disabled || false"
+            [visible]="btn?.visible || false"
+            [loading]="btn?.loading || false"
+            [fullWidth]="btn?.fullWidth || false"
+            [loaderOptions]="
+              btn?.loaderOptions ??
+              {
+                size: 'small',
+                mode: 'spinner',
+              }
+            "
+            (onClick)="
+              onButtonClick.emit({ button: $event.component, component: this })
+            "
+          >
+          </vx-button>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="right">
+      <ng-container *ngFor="let btn of buttons">
+        <ng-container *ngIf="btn.position && btn.position == 'right'">
+          <vx-button
+            [id]="btn.id"
+            [stylingMode]="btn.stylingMode || 'outlined'"
+            [type]="btn.type || 'default'"
+            [text]="btn.text || ''"
+            [height]="btn.height || 35"
+            [width]="btn.width ?? 'auto'"
+            [disabled]="btn.disabled || false"
+            [visible]="btn.visible || false"
+            [loading]="btn.loading || false"
+            (onClick)="
+              onButtonClick.emit({ button: $event.component, component: this })
+            "
+          >
+          </vx-button>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+
+  <div
+    *ngIf="resizable"
+    class="vx-resize-handle"
+    (mousedown)="onResizeMouseDown($event)"
+  ></div>
+</div>
+
+<!-- templates for buttons  -->
+
+<ng-template #closeIcon>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    viewBox="0 0 16 16"
+  >
+    <path
+      d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"
+    />
+  </svg>
+</ng-template>
