@@ -1,6 +1,6 @@
 {
-  "name": "@your-username/popfusion",
-  "version": "1.0.0",
+  "name": "popup-fusion",
+  "version": "1.0.1",
   "description": "A dynamic Angular popup component library for rendering components dynamically with customizable inputs.",
   "keywords": [
     "angular",
@@ -14,11 +14,7 @@
   "author": "Mohamed Maatoug",
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/popfusion.git"
-  },
-  "homepage": "https://github.com/your-username/popfusion#readme",
-  "bugs": {
-    "url": "https://github.com/your-username/popfusion/issues"
+    "url": "https://github.com/MedMAATOUG/vortex-ui.git"
   },
   "peerDependencies": {
     "@angular/common": "^19.1.0",
@@ -39,6 +35,5 @@
     "test": "ng test popfusion",
     "lint": "ng lint popfusion",
     "publish": "npm run build && npm publish --access public"
-  },
-  "private": false
+  }
 }

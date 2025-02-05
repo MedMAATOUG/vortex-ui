@@ -1,6 +1,6 @@
 # vx-popup
 
-`vx-popup` is a customizable and lightweight Angular popup/modal component. It provides an easy-to-use API for dynamically opening modals with various configurations.
+`popup-fusion` is a customizable and lightweight Angular popup/modal component. It provides an easy-to-use API for dynamically opening modals with various configurations.
 
 ## 🚀 Features
 

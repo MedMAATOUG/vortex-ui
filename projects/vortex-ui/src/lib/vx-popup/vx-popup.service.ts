@@ -12,7 +12,7 @@ import { VxPopupConfig } from './vx-popup.models';
 @Injectable({
   providedIn: 'root',
 })
-export class VxPopUpService {
+export class PopupFusionService {
   private popups: ComponentRef<PopupFusionComponent>[] = [];
   private popupsRef: {
     id: string;

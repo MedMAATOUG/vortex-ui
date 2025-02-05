@@ -26,7 +26,7 @@ import {
   VxPopupResizeEvent,
   VxPopupState,
 } from './vx-popup.models';
-import { VxPopUpService } from './vx-popup.service';
+import { PopupFusionService } from './vx-popup.service';
 
 import type { VxButtonConfig } from '../vx-button/vx-button.models';
 
@@ -341,14 +341,14 @@ export class PopupFusionComponent {
   private _positionXY = default_popup_properties.positionXY;
   private _buttons: VxButtonConfig[] = default_popup_properties.buttons;
   private _isComponentReady = false;
-  private service = inject(VxPopUpService);
+  private popupFusionService = inject(PopupFusionService);
   private cdr = inject(ChangeDetectorRef);
   ngOnInit() {
     this.state.size = {
       width: this.width || default_popup_properties.width,
       height: this.height || default_popup_properties.height,
     };
-    this.state.zIndex = this.service.getZIndex();
+    this.state.zIndex = this.popupFusionService.getZIndex();
   }
 
   ngAfterViewInit(): void {
@@ -505,7 +505,7 @@ export class PopupFusionComponent {
 
   close() {
     this.visible = false;
-    this.service.closePopup(this.state.id);
+    this.popupFusionService.closePopup(this.state.id);
   }
 
   open() {

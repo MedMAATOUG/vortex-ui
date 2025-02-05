@@ -9,7 +9,6 @@
     "test": "ng test",
     "serve:ssr:demo": "node dist/demo/server/server.mjs"
   },
-  "private": true,
   "dependencies": {
     "@angular/animations": "^19.1.0",
     "@angular/common": "^19.1.0",
