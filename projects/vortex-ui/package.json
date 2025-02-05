@@ -1,0 +1,44 @@
+{
+  "name": "@your-username/popfusion",
+  "version": "1.0.0",
+  "description": "A dynamic Angular popup component library for rendering components dynamically with customizable inputs.",
+  "keywords": [
+    "angular",
+    "popup",
+    "modal",
+    "dynamic",
+    "overlay",
+    "component"
+  ],
+  "license": "MIT",
+  "author": "Mohamed Maatoug",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/popfusion.git"
+  },
+  "homepage": "https://github.com/your-username/popfusion#readme",
+  "bugs": {
+    "url": "https://github.com/your-username/popfusion/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": "^19.1.0",
+    "@angular/core": "^19.1.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "typings": "dist/vx-popup.d.ts",
+  "main": "dist/bundles/popfusion.umd.js",
+  "module": "dist/fesm2015/popfusion.js",
+  "es2015": "dist/fesm2015/popfusion.js",
+  "esm2015": "dist/esm2015/popfusion.js",
+  "fesm2015": "dist/fesm2015/popfusion.js",
+  "scripts": {
+    "build": "ng build popfusion --prod",
+    "test": "ng test popfusion",
+    "lint": "ng lint popfusion",
+    "publish": "npm run build && npm publish --access public"
+  },
+  "private": false
+}
